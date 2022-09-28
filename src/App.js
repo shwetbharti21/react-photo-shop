@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ImageGallery from "../src/pages/ImageGallery";
+import Product from "../src/pages/Product";
+import Cart from "../src/pages/Cart";
+import Box from "@mui/material/Box";
+import { Routes, Route } from "react-router-dom";
+import PhotoCartContextProvider from "../src/context/photoCart";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <PhotoCartContextProvider>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            margin: 4,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <h1> Photo Shop</h1>
+          <Cart />
+        </Box>
+        <Routes>
+          <Route path="/" element={<ImageGallery />}></Route>
+          <Route path="/product" element={<Product />}></Route>
+        </Routes>
+      </PhotoCartContextProvider>
+    </>
   );
 }
 
